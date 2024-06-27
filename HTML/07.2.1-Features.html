@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        (poster) attribute is used to set the image that will be displayed before the video starts playing.
+        (preload) attribute is used to set the loading strategy of the video.
+            (auto): The video will start downloading as soon as the page is loaded.
+            (metadata): The video will start downloading as soon as the metadata (like dimensions and duration) are available.
+            (none): The video will not start downloading until the user clicks play.
+    -->
+    <video width="320" height="240" controls autoplay loop poster="img/img1.jpg" preload="auto">
+        <source src="video/video1.mp4" type="video/mp4">
+        <source src="video/video1.ogg" type="video/ogg">
+        <source src="video/video1.webm" type="video/webm">
+        Your Browser does not support the video tag.
+
+        <!--
+            <track> element is used to add subtitles, captions, and descriptions to a video.
+            (src) attribute is used to set the path of the subtitle file.
+            (kind) attribute is used to set the type of the subtitle file.
+            (srclang) attribute is used to set the language of the subtitle file.
+            (label) attribute is used to set the label of the subtitle file.
+        -->
+        <track src="video/subs/v1-en.vtt" kind="subtitles" srclang="en" label="English">
+        <track src="video/subs/v1-ar.vtt" kind="subtitles" srclang="ar" label="ARA_ARA">
+    </video>
+
+</body>
+</html>

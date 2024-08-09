@@ -1,0 +1,14 @@
+{
+  "name": "play-ground",
+  "version": "1.0.0",
+  "description": "Area to practice on node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abdelrhman Amro",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

@@ -1,4 +1,5 @@
-import { IUserData } from "./interfaces";
+import { formInputList } from "../data";
+import { IUserData } from "../interfaces";
 
 interface IProps {
   setIsLoggedIn: (val: boolean) => void;
@@ -20,6 +21,20 @@ const Form = ({ setIsLoggedIn, userData, setUserData }: IProps) => {
     });
   };
 
+  const renderFormInputList = formInputList.map((input, idx) => (
+    <div key={idx}>
+      <label htmlFor={input.label}>username: </label>
+      <input
+        type={input.type}
+        name={input.name}
+        id={input.id}
+        value={userData[input.name]}
+        onChange={onChangeHandler}
+      />
+      <span>typing: ... {userData[input.name]}</span>
+    </div>
+  ));
+
   return (
     // the form
     <form
@@ -27,54 +42,7 @@ const Form = ({ setIsLoggedIn, userData, setUserData }: IProps) => {
         event.preventDefault();
       }}
     >
-      {/* Username */}
-      <div>
-        <label htmlFor="username">username: </label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          value={userData.username}
-          onChange={onChangeHandler}
-        />
-        <span>typing: ... {userData.username}</span>
-      </div>
-
-      <div>
-        <label htmlFor="email">Email: </label>
-        <input
-          type="text"
-          name="email"
-          id="email"
-          value={userData.email}
-          onChange={onChangeHandler}
-        />
-        <span>typing: ... {userData.email}</span>
-      </div>
-
-      <div>
-        <label htmlFor="address">address: </label>
-        <input
-          type="text"
-          name="address"
-          id="address"
-          value={userData.address}
-          onChange={onChangeHandler}
-        />
-        <span>typing: ... {userData.address}</span>
-      </div>
-
-      <div>
-        <label htmlFor="password">Password: </label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={userData.password}
-          onChange={onChangeHandler}
-        />
-        <span>typing: ... {userData.password}</span>
-      </div>
+      {renderFormInputList}
 
       <button onClick={() => setIsLoggedIn(true)}>Login</button>
     </form>

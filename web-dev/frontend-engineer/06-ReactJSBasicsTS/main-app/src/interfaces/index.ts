@@ -4,3 +4,10 @@ export interface IUserData {
   email: string;
   password: string;
 }
+
+export interface formData {
+  label: string;
+  type: string;
+  name: keyof IUserData;
+  id: string;
+}

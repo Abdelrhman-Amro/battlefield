@@ -1,5 +1,7 @@
+# Commits for each working time with -> "Jschallenger #n"
+
 # [JSchallenger](https://www.jschallenger.com/)
-# Track (Javascript-Practice[*](https://www.jschallenger.com/javascript-practice/)) progress 
+# Track (Javascript-Practice[*](https://www.jschallenger.com/javascript-practice/)) progress
 ## Javascript Fundamentals
 1. Sum two numbers
 2. Comparison operators, strict equality

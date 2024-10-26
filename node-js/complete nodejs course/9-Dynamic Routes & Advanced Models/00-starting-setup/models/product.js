@@ -7,6 +7,7 @@ const p = path.join(
   'products.json'
 );
 
+// get products as [Product]
 const getProductsFromFile = cb => {
   fs.readFile(p, (err, fileContent) => {
     if (err) {
@@ -17,6 +18,7 @@ const getProductsFromFile = cb => {
   });
 };
 
+// the Product class
 module.exports = class Product {
   constructor(title, imageUrl, description, price) {
     this.id = Math.random().toString();
@@ -28,7 +30,7 @@ module.exports = class Product {
 
   save() {
     getProductsFromFile(products => {
-      products.push(this);
+      products.push(this); // push the new product that is inside (this)
       fs.writeFile(p, JSON.stringify(products), err => {
         console.log(err);
       });
@@ -41,7 +43,7 @@ module.exports = class Product {
 
   static fetchOne(id, cb) {
     getProductsFromFile(products => {
-      const product = products.find(p => p.id === id);
+      const product = products.find(p => p.id === id); // p.id is the id of each product in products
       cb(product);
     });
   }

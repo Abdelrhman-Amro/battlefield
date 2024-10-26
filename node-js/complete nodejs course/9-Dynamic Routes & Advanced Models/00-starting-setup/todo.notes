@@ -1,0 +1,20 @@
+# 22/10/2024
+##1
+[ ] create /edit-product router
+
+# 18/10/2024
+##2
+[√] Create and Prepare the cart model file
+    - add the path
+    - import the fs and path modules
+[√] Build addProduct function logic addProduct(id)
+    - read the cart.json
+    - check if the product exist or not
+        - exist true: qanta
+    - save the new changes
+##1
+[√] Create (add-to-cart) include view
+[√] Add add-to-cart to all views
+[√] Create route for (/cart->post)
+[√] Add its controller
+    - print the id of the products in the cart

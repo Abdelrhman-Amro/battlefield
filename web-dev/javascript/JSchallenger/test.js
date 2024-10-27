@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-function fun(a) {
-  let arr = a.splice(, 3);
-  return arr;
+function myFunction(a) {
+  return a.filter((i) => i  0).length;
 }
 
-const x = fun([1, 2, 3, 4, 5, 6, 7]);
+const x = myFunction([1, -2, 2, -4]);
+
 console.log(x);

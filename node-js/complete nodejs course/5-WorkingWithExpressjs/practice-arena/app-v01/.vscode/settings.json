@@ -1,6 +1,0 @@
-{
-    "editor.defaultFormatter": "standard.vscode-standard",
-    "editor.formatOnSave": true,
-    "notebook.defaultFormatter": "standard.vscode-standard",
-    "notebook.formatOnSave.enabled": true
-}

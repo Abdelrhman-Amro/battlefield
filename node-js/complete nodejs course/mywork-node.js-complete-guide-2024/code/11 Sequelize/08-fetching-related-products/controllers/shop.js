@@ -1,5 +1,6 @@
 const Product = require('../models/product');
 const Cart = require('../models/cart');
+const { where } = require('sequelize');
 
 exports.getProducts = (req, res, next) => {
     Product.findAll()
@@ -54,6 +55,12 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
+    /* Algorithm
+    # fetch user cart
+    # get cart products
+    # render cart view with products
+    */
+
     req.user
         .getCart()
         .then((cart) => {
@@ -74,20 +81,41 @@ exports.getCart = (req, res, next) => {
         .catch((err) => console.log(err));
 };
 
+/**
+ * add product to user cart
+ * if the product exist increase qty by 1
+ * if not -> add it to cart then iniate qty by 1
+ */
 exports.postCart = (req, res, next) => {
     const prodId = req.body.productId;
-
+    let fetchedCart;
+    let newQuantity = 1;
     req.user
         .getCart()
         .then((cart) => {
-            cart.g
+            fetchedCart = cart;
+            return cart.getProducts({ where: { id: prodId } }); // fetch the new produc from cart if existed
         })
-        .catch((err) => console.log(err));
-
-    // Product.findById(prodId, (product) => {
-    //     Cart.addProduct(prodId, product.price);
-    // });
-    // res.redirect('/cart');
+        .then((products) => {
+            if (products.length > 0) {
+                newQuantity = products[0].cartItem.qty + 1;
+                return products[0];
+            } else {
+                return Product.findByPk(prodId);
+            }
+        })
+        .then((product) => {
+            return fetchedCart.addProduct(product, {
+                through: { qty: newQuantity },
+            });
+        })
+        .then(() => {
+            console.log('Cart Updated');
+            res.redirect('/cart');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 };
 
 exports.postCartDeleteProduct = (req, res, next) => {
@@ -111,3 +139,7 @@ exports.getCheckout = (req, res, next) => {
         pageTitle: 'Checkout',
     });
 };
+
+// create order model
+// create order-item model
+// build orderNow btn in cart view

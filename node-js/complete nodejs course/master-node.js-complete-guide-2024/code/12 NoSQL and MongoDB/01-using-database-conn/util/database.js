@@ -8,7 +8,7 @@ const mongoConnect = (callback) => {
      *  "mongodb+srv://<username>:<password>@<cluster-id>.mongodb.net/<dbName>?retryWrites=true&authSource=admin"
      */
     MongoClient.connect(
-        'mongodb://127.0.0.1:27017/shop?retryWrites=true&authSource=admin'
+        'mongodb+srv://abdelrhman:abdelrhman2003@complete-node.ib0rr.mongodb.net/?retryWrites=true&w=majority&appName=complete-node'
     )
         .then((client) => {
             console.log('Connected!');

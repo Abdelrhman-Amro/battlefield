@@ -32,5 +32,6 @@ app.use('/admin', adminRoutes);
 // app.use(errorController.get404);
 
 mongoConnect(() => {
+    console.log('conected');
     app.listen(3000);
 });

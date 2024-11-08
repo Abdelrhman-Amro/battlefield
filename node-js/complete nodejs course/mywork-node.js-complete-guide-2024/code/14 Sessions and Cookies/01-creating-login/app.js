@@ -38,7 +38,9 @@ app.use(errorController.get404);
  *  "mongodb+srv://<username>:<password>@<cluster-id>.mongodb.net/<dbName>?retryWrites=true&authSource=admin"
  */
 mongoose
-    .connect('mongodb://127.0.0.1:27017/shop?retryWrites=true&authSource=admin')
+    .connect(
+        'mongodb+srv://abdelrhman:abdelrhman2003@complete-node.ib0rr.mongodb.net/shop?retryWrites=true&w=majority&appName=complete-node'
+    )
     .then((result) => {
         User.findOne().then((user) => {
             if (!user) {

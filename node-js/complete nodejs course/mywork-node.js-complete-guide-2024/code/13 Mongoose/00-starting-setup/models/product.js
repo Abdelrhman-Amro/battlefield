@@ -21,6 +21,11 @@ const productSchema = new Schema({
         type: String,
         required: true,
     },
+    userId: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
 });
 
 // Define the model

@@ -1,9 +1,18 @@
 #!/usr/bin/env node
 
-function myFunction(a) {
-  return a.filter((i) => i  0).length;
+// reduce
+// acc cur
+// acc.concat(cur)
+function myFunction(arr) {
+  return arr.sort((a, b) => {
+    console.log(b.b, a.b);
+    b.b - a.b;
+  });
 }
 
-const x = myFunction([1, -2, 2, -4]);
+const x = myFunction([
+  { a: 2, b: 10 },
+  { a: 5, b: 4 },
+]);
 
 console.log(x);

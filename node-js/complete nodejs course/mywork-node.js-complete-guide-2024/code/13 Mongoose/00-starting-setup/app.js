@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
-// const User = require('./models/user');
+const User = require('./models/user');
 
 const mongoose = require('mongoose');
 
@@ -19,14 +19,15 @@ const shopRoutes = require('./routes/shop');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use((req, res, next) => {
-//     User.findById('635a9e6a9bc7ce61c0b80a1d')
-//         .then((user) => {
-//             req.user = new User(user.name, user.email, user.cart, user._id);
-//             next();
-//         })
-//         .catch((err) => console.log(err));
-// });
+app.use((req, res, next) => {
+    User.findById('672cd6d64a801a43686e1339')
+        .then((user) => {
+            req.user = user;
+            console.log('#user added to req');
+            next();
+        })
+        .catch((err) => console.log(err));
+});
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
@@ -39,6 +40,19 @@ mongoose
     )
     .then((result) => {
         console.log('=== connected to database and start listening ===');
+
+        // create first user for testing
+        User.findOne().then((user) => {
+            if (!user) {
+                const user = new User({
+                    name: 'Max',
+                    email: 'max@test.com',
+                    cart: { items: [] },
+                });
+                user.save();
+                console.log('#first user created');
+            }
+        });
         app.listen(3000);
     })
     .catch((err) => {

@@ -1,8 +1,9 @@
 const path = require('path');
 
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const session = require('express-session');
 
 const errorController = require('./controllers/error');
 const User = require('./models/user');
@@ -18,6 +19,10 @@ const authRoutes = require('./routes/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+// initialize session middleware
+app.use(
+    session({ secret: 'my secret', resave: false, saveUninitialized: false })
+);
 
 app.use((req, res, next) => {
     User.findById('6606e689fb4c4cbf7dd95380')
@@ -38,7 +43,9 @@ app.use(errorController.get404);
  *  "mongodb+srv://<username>:<password>@<cluster-id>.mongodb.net/<dbName>?retryWrites=true&authSource=admin"
  */
 mongoose
-    .connect('mongodb://127.0.0.1:27017/shop?retryWrites=true&authSource=admin')
+    .connect(
+        'mongodb+srv://abdelrhman:abdelrhman2003@complete-node.ib0rr.mongodb.net/shop?retryWrites=true&w=majority&appName=complete-node'
+    )
     .then((result) => {
         User.findOne().then((user) => {
             if (!user) {

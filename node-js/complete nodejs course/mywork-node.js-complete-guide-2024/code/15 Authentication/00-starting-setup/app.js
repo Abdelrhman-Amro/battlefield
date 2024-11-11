@@ -13,7 +13,7 @@ const User = require('./models/user');
  *  "mongodb+srv://<username>:<password>@<cluster-id>.mongodb.net/<dbName>?retryWrites=true&authSource=admin"
  */
 const MONGODB_URI =
-    'mongodb://127.0.0.1:27017/shop?retryWrites=true&authSource=admin';
+    'mongodb+srv://abdelrhman:abdelrhman2003@complete-node.ib0rr.mongodb.net/shop?retryWrites=true&w=majority&appName=complete-node';
 
 const app = express();
 const store = new MongoDBStore({
@@ -60,18 +60,6 @@ app.use(errorController.get404);
 mongoose
     .connect(MONGODB_URI)
     .then((result) => {
-        User.findOne().then((user) => {
-            if (!user) {
-                const user = new User({
-                    name: 'Max',
-                    email: 'max@test.com',
-                    cart: {
-                        items: [],
-                    },
-                });
-                user.save();
-            }
-        });
         app.listen(3000);
     })
     .catch((err) => {

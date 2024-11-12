@@ -1,20 +1,39 @@
 const { render } = require('ejs');
 const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer');
+const sendgridTransport = require('nodemailer-sendgrid-transport');
+
 const User = require('../models/user');
 
+const transporter = nodemailer.createTransport(sendgridTransport());
+
 exports.getLogin = (req, res, next) => {
+    let message = req.flash('error');
+
+    if (message.length > 0) {
+        message = message[0];
+    } else {
+        message = null;
+    }
     res.render('auth/login', {
         path: '/login',
         pageTitle: 'Login',
-        isAuthenticated: req.session.isLoggedIn,
+        errorMessage: message,
     });
 };
 
 exports.getSignup = (req, res, next) => {
+    let message = req.flash('error');
+
+    if (message.length > 0) {
+        message = message[0];
+    } else {
+        message = null;
+    }
     res.render('auth/signup', {
         path: '/signup',
         pageTitle: 'Signup',
-        isAuthenticated: false,
+        errorMessage: message,
     });
 };
 
@@ -28,12 +47,14 @@ exports.postLogin = (req, res, next) => {
             // if email doesn't exist
             if (!user) {
                 console.log("Email Doesn't Exist!!");
+                req.flash('error', 'Invalid email.');
                 return res.redirect('/login');
             }
             bcrypt.compare(password, user.password).then((doMatch) => {
                 // if password is wrong
                 if (!doMatch) {
                     console.log('Wrong Passowrd!!');
+                    req.flash('error', 'Invalid password.');
                     return res.redirect('/login');
                 }
                 req.session.isLoggedIn = true;
@@ -58,6 +79,10 @@ exports.postSignup = (req, res, next) => {
         .then((userDoc) => {
             // if email is already exist
             if (userDoc) {
+                req.flash(
+                    'error',
+                    'E-Mail exists already, please pick a different one.'
+                );
                 return res.redirect('/signup');
             }
             return bcrypt

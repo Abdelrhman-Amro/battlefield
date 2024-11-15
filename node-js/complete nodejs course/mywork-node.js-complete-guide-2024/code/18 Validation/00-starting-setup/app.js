@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 /** CSRF-CSRF PACKAGE */
-const { doubleCsrf: csrf } = require('csrf-csrf');
+const { doubleCsrf } = require('csrf-csrf');
 const cookieParser = require('cookie-parser');
 /** ================ */
 const flash = require('connect-flash');
@@ -18,15 +18,25 @@ const User = require('./models/user');
  *  "mongodb+srv://<username>:<password>@<cluster-id>.mongodb.net/<dbName>?retryWrites=true&authSource=admin"
  */
 const MONGODB_URI =
-    'mongodb://127.0.0.1:27017/shop?retryWrites=true&authSource=admin';
+    'mongodb+srv://abdelrhman:abdelrhman2003@complete-node.ib0rr.mongodb.net/shop?retryWrites=true&w=majority&appName=complete-node';
 
 const app = express();
 const store = new MongoDBStore({
     uri: MONGODB_URI,
     collection: 'sessions',
 });
-const csrfProtection = csrf({
-    getSecret: () => 'supersecret',
+
+// CSRF Protection Configuration
+const csrfProtection = doubleCsrf({
+    getSecret: () => 'supersecret-min-32-chars-long-secret-key', // Make this longer and more secure
+    cookieName: 'x-csrf-token', // Name of the cookie to be set
+    cookieOptions: {
+        httpOnly: true,
+        sameSite: 'lax', // Changed from strict to lax to allow more common use cases
+        secure: process.env.NODE_ENV === 'production', // Only use secure in production
+        signed: true, // Since you're using signed cookies
+    },
+    size: 64, // Token length
     getTokenFromRequest: (req) => req.body._csrf,
 });
 
@@ -48,7 +58,15 @@ app.use(
     })
 );
 /** CSRF-CSRF PACKAGE */
-app.use(cookieParser('supersecret'));
+app.use(cookieParser('supersecret-min-32-chars-long-secret-key')); // Use the same secret as CSRF
+// ## Testing middelware
+app.use((req, res, next) => {
+    console.log(csrfProtection);
+    console.log(req.body._csrf);
+    console.log(req.body);
+    console.log(req.headers);
+    next();
+});
 app.use(csrfProtection.doubleCsrfProtection);
 /** ================ */
 app.use(flash());

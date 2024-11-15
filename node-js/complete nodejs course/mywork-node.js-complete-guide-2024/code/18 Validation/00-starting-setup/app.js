@@ -59,14 +59,6 @@ app.use(
 );
 /** CSRF-CSRF PACKAGE */
 app.use(cookieParser('supersecret-min-32-chars-long-secret-key')); // Use the same secret as CSRF
-// ## Testing middelware
-app.use((req, res, next) => {
-    console.log(csrfProtection);
-    console.log(req.body._csrf);
-    console.log(req.body);
-    console.log(req.headers);
-    next();
-});
 app.use(csrfProtection.doubleCsrfProtection);
 /** ================ */
 app.use(flash());

@@ -1,7 +1,0 @@
-{
-  "css.validate": false,
-  "html.validate.scripts": false,
-  "html.validate.styles": false,
-  "scss.validate": false,
-  "less.validate": false
-}

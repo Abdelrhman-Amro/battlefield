@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-# pye is refer to python executable
-# Make all python scripts executable
-
-# To use pye direct do the next ->
-    # cp pye /usr/local/bin/pye
-
-chmod u+x *.py

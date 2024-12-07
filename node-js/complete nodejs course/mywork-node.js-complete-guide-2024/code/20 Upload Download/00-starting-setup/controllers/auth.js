@@ -11,7 +11,8 @@ const User = require('../models/user');
 const tranporter = nodemailer.createTransport(
     sendgridTransport({
         auth: {
-            api_key: '<<YOUR_API_KEY>>',
+            api_key:
+                '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',
         },
     })
 );
@@ -160,7 +161,7 @@ exports.postSignup = (req, res, next) => {
                  *  see "Sender Authentication" in
                  *  Sendgrid dashboard
                  */
-                from: 'test@test.com',
+                from: 'abdamro288dev@gmail.com',
                 subject: 'Signup succeeded!',
                 html: '<h1>You sucessfully signed up!</h1>',
             });

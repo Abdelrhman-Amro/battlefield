@@ -7,14 +7,14 @@
    <%- include('../includes/navigation.ejs') %>
 
     <main>
-        <% if(errorMessage) { %>
+        <% if (errorMessage) { %>
             <div class="user-message user-message--error"><%= errorMessage %></div>
         <% } %>
-        <form class="product-form" action="/admin/<% if (editing || hasError) { %>edit-product<% } else { %>add-product<% } %>" method="POST" enctype="multipart/form-data">
+        <form class="product-form" action="/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>" method="POST" enctype="multipart/form-data">
             <div class="form-control">
                 <label for="title">Title</label>
                 <input 
-                    class="<%= validationErrors.find(e => e.path === 'title') ? 'invalid' : '' %>"
+                    class="<%= validationErrors.find(e => e.param === 'title') ? 'invalid' : '' %>"
                     type="text" 
                     name="title" 
                     id="title" 
@@ -22,8 +22,8 @@
             </div>
             <!-- <div class="form-control">
                 <label for="imageUrl">Image URL</label>
-                <input
-                    class="<%= validationErrors.find(e => e.path === 'imageUrl') ? 'invalid' : '' %>" 
+                <input 
+                    class="<%= validationErrors.find(e => e.param === 'imageUrl') ? 'invalid' : '' %>"
                     type="text" 
                     name="imageUrl" 
                     id="imageUrl" 
@@ -31,15 +31,15 @@
             </div> -->
             <div class="form-control">
                 <label for="image">Image</label>
-                <input
+                <input 
                     type="file" 
                     name="image" 
-                    id="imgae" >
+                    id="image" >
             </div>
             <div class="form-control">
                 <label for="price">Price</label>
                 <input 
-                    class="<%= validationErrors.find(e => e.path === 'price') ? 'invalid' : '' %>"
+                    class="<%= validationErrors.find(e => e.param === 'price') ? 'invalid' : '' %>"
                     type="number" 
                     name="price" 
                     id="price" 
@@ -48,8 +48,8 @@
             </div>
             <div class="form-control">
                 <label for="description">Description</label>
-                <textarea
-                    class="<%= validationErrors.find(e => e.path === 'description') ? 'invalid' : '' %>"
+                <textarea 
+                    class="<%= validationErrors.find(e => e.param === 'description') ? 'invalid' : '' %>"
                     name="description" 
                     id="description" 
                     rows="5"><% if (editing || hasError) { %><%= product.description %><% } %></textarea>
@@ -58,7 +58,7 @@
                 <input type="hidden" value="<%= product._id %>" name="productId">
             <% } %>
 
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <button class="btn" type="submit"><% if (editing) { %>Update Product<% } else { %>Add Product<% } %></button>
         </form>
     </main>

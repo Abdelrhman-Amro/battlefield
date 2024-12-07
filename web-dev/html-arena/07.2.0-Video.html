@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        <video> element is used to show a video on a web page.
+        <source> element allows you to specify alternative video files which the browser may choose from.
+        The browser will use the first recognized format.
+    -->
+    <!--
+        (controls) attribute adds audio controls, like play, pause, and volume.
+        (autoplay) start an audio file automatically.
+        **muted after autoplay to let your audio file start playing automatically (but muted)
+        (Loop) attribute loops the audio file.
+    -->
+    <video width="320" height="240" controls autoplay loop>
+        <source src="video/video1.mp4" type="video/mp4">
+        <source src="video/video1.ogg" type="video/ogg">
+        <source src="video/video1.webm" type="video/webm">
+        Your Browser does not support the video tag.
+    </video>
+
+</body>
+</html>

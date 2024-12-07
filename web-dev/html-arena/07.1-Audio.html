@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        <audio> element is used to play an audio file on a web page.
+        <source> element allows you to specify alternative audio files which the browser may choose from.
+            The browser will use the first recognized format.
+    -->
+    <!--
+        (controls) attribute adds audio controls, like play, pause, and volume.
+        (autoplay) start an audio file automatically.
+        **muted after autoplay to let your audio file start playing automatically (but muted)
+        (Loop) attribute loops the audio file.
+    -->
+    <audio controls loop>
+        <source src="audio/audio1.mp3" type="audio/mpeg">
+        <source src="audio/audio1.ogg" type="audio/ogg">
+        <source src="audio/audio1.wav" type="audio/wav">
+    </audio>
+    <audio controls muted autoplay>
+        <source src="audio/audio1.mp3" type="audio/mpeg">
+        <source src="audio/audio1.ogg" type="audio/ogg">
+        <source src="audio/audio1.wav" type="audio/wav">
+    </audio>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form>
+        <label for="cnt">What is your first country?</label>
+        <select name="Country" id="cnt" multiple>
+            <option value="">Select Country</option>
+            <option value="India" selected>India</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+        </select>
+
+        <br>
+
+        <!--
+            Divide Into Sections with <optgroup> named by (label)
+        -->
+        <label for="cnt1">What is your second country?</label>
+        <select name="Country" id="cnt1" >
+            <option value="">Select Country</option>
+            <optgroup label="Asia">
+                <option value="India">India</option>
+                <option value="China">China</option>
+                <option value="Japan">Japan</option>
+            </optgroup>
+            <optgroup label="Europe">
+                <option value="France">France</option>
+                <option value="Germany">Germany</option>
+                <option value="Italy">Italy</option>
+            </optgroup>
+            <optgroup label="Africa">
+                <option value="Nigeria">Nigeria</option>
+                <option value="Ghana">Ghana</option>
+                <option value="Egypt">Egypt</option>
+            </optgroup>
+        </select>
+        <br>
+        
+        <!--
+            <datalist> is used to provide a list of suggested values for an input field.
+        -->
+        <label for="cnt2">What is your third country?</label>
+        <input list="Country" name="Country" id="cnt2">
+        <datalist id="Country">
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+            <option value="China">China</option>
+        </datalist>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>

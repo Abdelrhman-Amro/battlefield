@@ -68,6 +68,6 @@ def close_method():
 
 if __name__ == "__main__":
     # test what you want
-    # send_method()
+    send_method()
     # throw_method()
-    close_method()
+    # close_method()

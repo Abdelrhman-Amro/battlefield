@@ -1,0 +1,3 @@
+# set rate inside meal
+    # data -> meal - stars - user
+    # CREATE rate - UPDATE rate

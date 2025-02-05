@@ -1,1 +1,3 @@
-# The area of learning everything
+# 🚀`Area Of Learning Everything`🚀
+
+# 🗝️`Discipline Is the Key`🗝️

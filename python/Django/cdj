@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# cdj - create django project
+
+############ 🛠️ Step 1: Environment Preparation
+read -p "Enter project name: " project
+
+# Create project directory and move to it
+mkdir $project
+cd $project
+
+# Setup virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+
+############ 📦 Step 2: Dependencies Installation
+# Ask for dependencies until empty
+while true; do
+    read -p "Enter dependencies: " dependencies
+    if [[ -z $dependencies ]]; then
+        break;
+    fi
+    pip install $dependencies
+done
+pip freeze > requirements.txt # save requirements
+
+############ 🏗️ Step 3: Setup Django Project
+django-admin startproject $project # create project
+
+# Ask for app name or skip if empty
+read -p "Enter app name: " app
+if [[ -n $app ]]; then
+    cd $project
+    django-admin startapp $app
+    cd .. # go back to main directory
+fi
+
+############ 🚀 Step 4: Clean and open vsc
+deactivate # deactivate virtual environment
+
+# Ask if open in vscode
+read -p "Open in vscode? (y/n) " vscode
+if [ "$vscode" == "y" ]; then
+    code .
+fi

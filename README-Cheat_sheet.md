@@ -1,3 +1,20 @@
+<table>
+  <tr>
+    <th>Header 1</th>
+    <th>Header 2</th>
+    <th>Header 3</th>
+  </tr>
+  <tr>
+    <td ><code style="color:red;">Cell 1<code></td>
+    <td>Cell 2 withmultiple lines</td>
+    <td>Cell 3</td>
+  </tr>
+  <tr>
+    <td>Another cell</td>
+    <td>This cell also<br>has multiple<br>lines</td>
+    <td>Last cell</td>
+  </tr>
+</table>
 # Headings
 
 #H1

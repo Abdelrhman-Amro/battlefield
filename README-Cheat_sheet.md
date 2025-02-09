@@ -17,7 +17,18 @@
 -   `Strikethrough` ~~two tildes~~
 
 ---
+# Toggle
+<details>
+<summary>Click to toggle contents of `code`</summary>
 
+```
+CODE!
+```
+
+</details>
+
+
+---
 # lists
 
 1. num list-1
